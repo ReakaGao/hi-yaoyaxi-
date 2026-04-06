@@ -36,60 +36,80 @@
     <div class="absolute inset-0 opacity-20 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:56px_56px]"></div>
   </div>
 
-  <section style="padding:90px 8vw 60px;max-width:1440px;margin:auto;">
-    <div class="hero-grid" style="display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;min-height:86vh;">
-      <div>
-        <div style="display:flex;align-items:center;gap:14px;margin-bottom:30px;">
-          <div style="width:54px;height:54px;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.10);box-shadow:0 10px 30px rgba(0,0,0,0.35);background:rgba(255,255,255,0.03);backdrop-filter:blur(8px);">
-            <img src="./avatar.png" alt="avatar" style="width:100%;height:100%;object-fit:cover;display:block;">
-          </div>
-          <div style="display:flex;flex-direction:column;justify-content:center;line-height:1.1;">
-            <div class="serif" style="font-size:18px;letter-spacing:0.18em;color:rgba(255,255,255,0.88);">垚芽熹</div>
-            <div style="margin-top:6px;font-size:11px;letter-spacing:0.34em;text-transform:uppercase;color:rgba(255,255,255,0.36);">YAO YAXI</div>
-          </div>
+  <section style="padding:28px 28px 48px;max-width:1680px;margin:auto;">
+    <div class="hero-float" style="
+      position:relative;
+      width:100%;
+      min-height:92vh;
+      border-radius:30px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.08);
+      background:#0b0f1a;
+      box-shadow:0 30px 100px rgba(0,0,0,0.45);
+    ">
+      <img src="./poster-main.png" alt="main visual" style="
+        width:100%;
+        height:100%;
+        position:absolute;
+        inset:0;
+        object-fit:cover;
+        object-position:center;
+        transform:scale(1.01);
+        filter:brightness(0.96) contrast(1.03);
+      ">
+      <div style="
+        position:absolute; inset:0;
+        background:
+          linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.10) 100%);
+      "></div>
+      <div class="hero-particles"></div>
+
+      <div style="
+        position:absolute;
+        left:26px;
+        top:24px;
+        display:flex;
+        align-items:center;
+        gap:14px;
+        z-index:2;
+        padding:10px 14px;
+        border-radius:18px;
+        background:rgba(0,0,0,0.18);
+        border:1px solid rgba(255,255,255,0.10);
+        backdrop-filter:blur(10px);
+      ">
+        <div style="width:48px;height:48px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.10);">
+          <img src="./avatar.png" alt="avatar" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
-
-        <h1 class="serif" style="font-size:clamp(56px,8vw,116px);line-height:.9;letter-spacing:-.03em;color:rgba(255,255,255,.96);">
-          把 AI 内容<br>写成会成交的<br>短剧项目
-        </h1>
-
-        <p style="margin-top:28px;max-width:560px;font-size:16px;line-height:1.95;color:rgba(255,255,255,.62);">
-          从创意结构到提案包装，帮助内容具备传播力、记忆点与项目表达能力。
-        </p>
-
-        <div style="margin-top:34px;display:flex;gap:16px;flex-wrap:wrap;">
-          <a href="#cases" style="padding:14px 28px;border:1px solid rgba(255,255,255,0.2);color:#fff;text-decoration:none;">进入作品</a>
-          <a href="#contact" style="padding:14px 28px;background:#fff;color:#000;text-decoration:none;">联系合作</a>
+        <div style="display:flex;flex-direction:column;line-height:1.1;">
+          <div class="serif" style="font-size:18px;letter-spacing:0.16em;color:rgba(255,255,255,0.90);">垚芽熹</div>
+          <div style="margin-top:6px;font-size:11px;letter-spacing:0.30em;text-transform:uppercase;color:rgba(255,255,255,0.42);">YAO YAXI</div>
         </div>
       </div>
 
-      <div class="hero-float" style="position:relative;width:100%;min-height:620px;border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);background:#0b0f1a;box-shadow:0 30px 100px rgba(0,0,0,0.45);">
-        <img src="./poster-main.png" alt="main visual" style="width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:center;transform:scale(1.02);filter:brightness(0.94) contrast(1.03);">
-        <div style="position:absolute;inset:0;background:linear-gradient(120deg,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.15) 50%,rgba(0,0,0,0.05) 100%),linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.08) 45%,rgba(0,0,0,0.3) 100%);"></div>
-        <div class="hero-particles"></div>
-
-        <div style="position:absolute;left:28px;right:28px;top:26px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;">
-          <div style="max-width:180px;font-size:12px;line-height:1.8;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.66);">
-            AI Short Drama<br>Creative Direction
-          </div>
-          <div style="padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(0,0,0,.18);color:rgba(255,255,255,.72);font-size:10px;letter-spacing:.28em;text-transform:uppercase;backdrop-filter:blur(8px);white-space:nowrap;">
-            Signature Visual
-          </div>
-        </div>
-
-        <div style="position:absolute;left:28px;right:28px;bottom:126px;">
-          <div style="font-size:11px;letter-spacing:.30em;text-transform:uppercase;color:rgba(255,255,255,.52);">YAO YAXI PRESENTS</div>
-          <div class="serif" style="margin-top:14px;max-width:420px;font-size:clamp(34px,4.5vw,62px);line-height:.92;color:rgba(255,255,255,.96);text-shadow:0 10px 34px rgba(0,0,0,0.45);">
-            让作品成为<br>项目的一部分
-          </div>
-        </div>
-
-        <div style="position:absolute;left:28px;right:28px;bottom:28px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-          <div style="padding:14px 16px;border-radius:18px;border:1px solid rgba(255,255,255,0.10);background:rgba(0,0,0,0.22);color:rgba(255,255,255,0.76);backdrop-filter:blur(8px);">AI短剧创作</div>
-          <div style="padding:14px 16px;border-radius:18px;border:1px solid rgba(255,255,255,0.10);background:rgba(0,0,0,0.22);color:rgba(255,255,255,0.76);backdrop-filter:blur(8px);">AI漫剧创作</div>
-          <div style="padding:14px 16px;border-radius:18px;border:1px solid rgba(255,255,255,0.10);background:rgba(0,0,0,0.22);color:rgba(255,255,255,0.76);backdrop-filter:blur(8px);">剧本演绎化改编</div>
-          <div style="padding:14px 16px;border-radius:18px;border:1px solid rgba(255,255,255,0.10);background:rgba(0,0,0,0.22);color:rgba(255,255,255,0.76);backdrop-filter:blur(8px);">AI短视频项目适配</div>
-        </div>
+      <div style="
+        position:absolute;
+        left:26px;
+        bottom:26px;
+        z-index:2;
+        display:flex;
+        gap:14px;
+        flex-wrap:wrap;
+      ">
+        <a href="#cases" style="
+          padding:14px 26px;
+          text-decoration:none;
+          color:#fff;
+          border:1px solid rgba(255,255,255,0.18);
+          background:rgba(0,0,0,0.20);
+          backdrop-filter:blur(10px);
+        ">进入作品</a>
+        <a href="#contact" style="
+          padding:14px 26px;
+          text-decoration:none;
+          color:#000;
+          background:#fff;
+        ">联系合作</a>
       </div>
     </div>
   </section>
