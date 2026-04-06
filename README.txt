@@ -1,1 +1,1 @@
-完整保留版终版：index.html 与 poster-main.png / poster1-4.png / qr.png / avatar.png 放同级即可。
+完整版终版（新版）：已更新首屏/作品区/联系区文案，并还原首屏背景图原色。
