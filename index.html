@@ -1,326 +1,207 @@
-<!DOCTYPE html> 
-
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="zh">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>垚（yao）芽熹｜AI短剧创作提案页</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body { background:#06070c; }
-    .serif { font-family: Georgia, "Times New Roman", "Songti SC", "STSong", serif; }
-    .noise::before{
-      content:"";
-      position:fixed; inset:0; pointer-events:none; opacity:.06;
-      background-image: radial-gradient(rgba(255,255,255,.8) 1px, transparent 1px);
-      background-size: 3px 3px;
-      mix-blend-mode: overlay;
-    }
-    .vignette::after{
-      content:"";
-      position:fixed; inset:0; pointer-events:none;
-      background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.6));
-    }
-    .play-triangle{
-      width:0; height:0; margin-left:4px;
-      border-top:10px solid transparent;
-      border-bottom:10px solid transparent;
-      border-left:16px solid rgba(255,255,255,.92);
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>YAO YAXI</title>
+
+<style>
+body{
+  margin:0;
+  background:#06070c;
+  color:#fff;
+  font-family:-apple-system,BlinkMacSystemFont;
+}
+
+/* ===== 主视觉 ===== */
+.hero{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+}
+
+.hero img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform:scale(1.03);
+}
+
+/* 遮罩 */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(120deg,rgba(0,0,0,.55),rgba(0,0,0,.1)),
+    linear-gradient(to top,rgba(0,0,0,.6),transparent);
+}
+
+/* 粒子 */
+.particles{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,215,120,0.2), transparent 40px),
+    radial-gradient(circle at 70% 60%, rgba(255,215,120,0.15), transparent 60px);
+  animation:move 16s linear infinite;
+}
+
+@keyframes move{
+  50%{transform:translateY(-20px);}
+}
+
+/* 标题 */
+.hero-text{
+  position:absolute;
+  bottom:120px;
+  left:40px;
+}
+
+.hero-text h1{
+  font-size:64px;
+  line-height:1;
+}
+
+/* ===== 作品 ===== */
+.section{
+  padding:80px 40px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+}
+
+.card{
+  border:1px solid rgba(255,255,255,.1);
+  padding:20px;
+  background:rgba(255,255,255,.03);
+}
+
+.poster{
+  position:relative;
+  height:260px;
+  border-radius:16px;
+  overflow:hidden;
+  cursor:pointer;
+}
+
+.poster img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.poster::after{
+  content:"▶";
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:40px;
+  opacity:.8;
+}
+
+/* ===== 弹窗 ===== */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+
+.modal iframe{
+  width:80%;
+  height:80%;
+}
+
+.close{
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:30px;
+  cursor:pointer;
+}
+</style>
 </head>
-<body class="min-h-screen bg-[#06070c] text-white overflow-x-hidden noise vignette">
-  <div class="fixed inset-0 pointer-events-none">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.08),transparent_40%)]"></div>
-    <div class="absolute inset-0 opacity-20 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:60px_60px]"></div>
+
+<body>
+
+<!-- 主视觉 -->
+<section class="hero">
+  <img src="./poster-main.png">
+  <div class="particles"></div>
+
+  <div class="hero-text">
+    <h1>让作品成为<br>项目的一部分</h1>
   </div>
+</section>
 
-  <section class="relative min-h-screen flex items-center px-6 md:px-10 lg:px-16 overflow-hidden">
-    <div class="absolute right-0 top-0 h-full w-[60%] pointer-events-none">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_60%_40%,rgba(255,255,255,0.18),transparent_60%)]"></div>
-      <div class="absolute inset-0 bg-[linear-gradient(to_left,rgba(6,7,12,0.95),transparent)]"></div>
-      <div class="absolute right-10 bottom-0 w-[420px] h-[620px] bg-white/5 border border-white/10 backdrop-blur-xl"></div>
+<!-- 作品 -->
+<section class="section">
+  <div class="grid">
+
+    <div class="card">
+      <div class="poster" onclick="play(0)">
+        <img src="./poster1.png">
+      </div>
+      <h3>贵女重生</h3>
     </div>
 
-    <div class="max-w-[1100px] relative z-10">
-      <div class="text-[11px] tracking-[0.5em] text-white/40 uppercase">
-        YAO YAXI / AI STORY SYSTEM
+    <div class="card">
+      <div class="poster" onclick="play(1)">
+        <img src="./poster2.png">
       </div>
-
-      <h1 class="mt-8 text-[14vw] md:text-[100px] lg:text-[120px] serif leading-[0.85]">
-        把 AI 内容
-        <br />
-        写成会成交的
-        <br />
-        短剧项目
-      </h1>
-
-      <p class="mt-8 max-w-[720px] text-white/70 text-lg leading-8">
-        我不是帮你堆内容，我是帮你把创意整理成更容易传播、提案与成交的短剧项目方案。
-      </p>
-
-      <div class="mt-5 text-white/46 text-sm md:text-base tracking-[0.18em] uppercase">
-        AI story structure / visual rhythm / business-ready pitch
-      </div>
-
-      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 max-w-[800px]">
-        <div class="border border-white/15 bg-white/5 px-4 py-4 text-white/80">更快完成内容提案</div>
-        <div class="border border-white/15 bg-white/5 px-4 py-4 text-white/80">更稳输出视觉化故事</div>
-        <div class="border border-white/15 bg-white/5 px-4 py-4 text-white/80">更适配AI短视频生产</div>
-      </div>
-
-      <div class="mt-10 flex gap-4 flex-wrap">
-        <a href="#cases" class="border border-white/30 px-6 py-3 hover:bg-white hover:text-black transition">查看案例</a>
-        <a href="#contact" class="bg-white text-black px-6 py-3">发起合作</a>
-      </div>
+      <h3>诡秘之猫</h3>
     </div>
-  </section>
 
-  <div class="h-[200px] flex items-center justify-center">
-    <div class="w-[2px] h-full bg-gradient-to-b from-transparent via-white/40 to-transparent"></div>
+    <div class="card">
+      <div class="poster" onclick="play(2)">
+        <img src="./poster3.png">
+      </div>
+      <h3>北纬30°</h3>
+    </div>
+
+    <div class="card">
+      <div class="poster" onclick="play(3)">
+        <img src="./poster4.png">
+      </div>
+      <h3>再见，明</h3>
+    </div>
+
   </div>
+</section>
 
-  <section class="px-6 md:px-10 lg:px-16 py-20">
-    <h2 class="text-4xl md:text-5xl serif leading-tight">
-      不是展示作品
-      <br />
-      是展示“内容模型”
-    </h2>
+<!-- 弹窗 -->
+<div class="modal" id="modal">
+  <div class="close" onclick="closeModal()">✕</div>
+  <iframe id="video"></iframe>
+</div>
 
-    <div class="mt-12 grid md:grid-cols-3 gap-6">
-      <div class="relative border border-white/10 p-8 bg-white/[0.02] backdrop-blur">
-        <div class="absolute inset-0 bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.08),transparent)] opacity-30"></div>
-        <div class="relative text-2xl serif">开场钩子</div>
-        <div class="relative mt-3 text-white/60">3秒抓人，直接进入内容核心</div>
-      </div>
-      <div class="relative border border-white/10 p-8 bg-white/[0.02] backdrop-blur">
-        <div class="absolute inset-0 bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.08),transparent)] opacity-30"></div>
-        <div class="relative text-2xl serif">节奏压缩</div>
-        <div class="relative mt-3 text-white/60">压缩叙事，让节奏适配短视频</div>
-      </div>
-      <div class="relative border border-white/10 p-8 bg-white/[0.02] backdrop-blur">
-        <div class="absolute inset-0 bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.08),transparent)] opacity-30"></div>
-        <div class="relative text-2xl serif">情绪转化</div>
-        <div class="relative mt-3 text-white/60">内容本身服务传播与成交</div>
-      </div>
-    </div>
-  </section>
+<script>
+const urls = [
+"https://player.bilibili.com/player.html?bvid=BV1xjSZBhEPJ",
+"https://player.bilibili.com/player.html?bvid=BV14GSZBPEBV",
+"https://player.bilibili.com/player.html?bvid=BV1yJSZBbEFi",
+"https://player.bilibili.com/player.html?bvid=BV1pnSZBZECU"
+];
 
-  <section id="cases" class="px-6 md:px-10 lg:px-16 py-20">
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-      <div>
-        <div class="text-[11px] uppercase tracking-[0.35em] text-white/45">
-          Works / Embedded Showcase
-        </div>
-        <h3 class="text-4xl md:text-5xl serif mt-4">
-          作品视频与项目价值
-        </h3>
-      </div>
-      <div class="max-w-[560px] text-white/58 leading-7">
-        这里不只是放视频，而是用视频证明能力。每个作品模块都由“视频 + 钩子 + 项目价值”组成，让甲方一眼看懂你为什么值得合作。
-      </div>
-    </div>
+function play(i){
+  document.getElementById('modal').style.display='flex';
+  document.getElementById('video').src=urls[i];
+}
 
-    <div class="grid md:grid-cols-2 gap-8">
+function closeModal(){
+  document.getElementById('modal').style.display='none';
+  document.getElementById('video').src='';
+}
+</script>
 
-      <div class="group relative border border-white/10 p-5 md:p-6 bg-white/[0.03] backdrop-blur overflow-hidden transition duration-300 hover:-translate-y-1 hover:bg-white/[0.05] hover:border-white/20 hover:shadow-[0_18px_60px_rgba(0,0,0,0.35)]">
-        <div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
-        <div class="relative aspect-[16/10] rounded-[22px] overflow-hidden border border-white/10 bg-black js-video-shell">
-          <button type="button" data-embed="https://player.bilibili.com/player.html?isOutside=true&bvid=BV1xjSZBhEPJ&p=1" class="js-poster relative w-full h-full text-left" style="background-image:url('./poster1.png');background-size:cover;background-position:center;">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.08),transparent_24%)]"></div>
-            <div class="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.78),rgba(0,0,0,0.12),rgba(0,0,0,0.46))]"></div>
-            <div class="absolute inset-0 shadow-[inset_0_-80px_120px_rgba(0,0,0,0.55)]"></div>
-            <div class="absolute inset-0 opacity-20 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:32px_32px]"></div>
-            <div class="absolute left-5 top-5 text-[10px] uppercase tracking-[0.32em] text-white/70">Official Poster Frame</div>
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="flex h-24 w-24 items-center justify-center rounded-full border border-white/15 bg-black/40 backdrop-blur-md shadow-[0_20px_60px_rgba(0,0,0,0.45)] transition duration-300 group-hover:scale-105 group-hover:bg-black/50">
-                <div class="play-triangle"></div>
-              </div>
-            </div>
-            <div class="absolute inset-x-0 bottom-2 md:bottom-4 p-5 md:p-6">
-              <div class="flex items-center justify-between gap-4">
-                <div>
-                  <div class="text-[11px] uppercase tracking-[0.28em] text-white/55">Poster / Click to Play</div>
-                  <div class="mt-2 text-base md:text-lg tracking-[0.18em] text-white/68 uppercase">Official Showcase</div>
-                  <div class="mt-3 text-[clamp(30px,4.6vw,64px)] serif leading-[0.88] tracking-tight text-white/95 drop-shadow-[0_8px_30px_rgba(0,0,0,0.55)]">贵女重生</div>
-                </div>
-                <div class="rounded-full border border-white/20 bg-black/30 px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-white/75 backdrop-blur-sm">Cinematic Cover</div>
-              </div>
-            </div>
-          </button>
-        </div>
-        <div class="relative mt-6 text-xs text-white/40 uppercase tracking-[0.3em]">权谋情绪 / 女性成长</div>
-        <div class="relative mt-2 text-2xl md:text-3xl serif">《贵女重生：谋权倾天下》</div>
-        <div class="relative mt-4 rounded-2xl border border-white/10 bg-black/20 p-4 backdrop-blur-sm">
-          <div class="text-[11px] uppercase tracking-[0.28em] text-white/38">Hook</div>
-          <div class="mt-2 text-white/80 leading-7">重生归来，不再做任人摆布的棋子。</div>
-        </div>
-        <div class="relative mt-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-sm">
-          <div class="text-[11px] uppercase tracking-[0.28em] text-white/38">Case Value</div>
-          <div class="mt-2 text-white/66 leading-7">强冲突开局模型｜高密度情绪推进｜适配短视频节奏</div>
-        </div>
-      </div>
-
-      <div class="group relative border border-white/10 p-5 md:p-6 bg-white/[0.03] backdrop-blur overflow-hidden transition duration-300 hover:-translate-y-1 hover:bg-white/[0.05] hover:border-white/20 hover:shadow-[0_18px_60px_rgba(0,0,0,0.35)]">
-        <div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
-        <div class="relative aspect-[16/10] rounded-[22px] overflow-hidden border border-white/10 bg-black js-video-shell">
-          <button type="button" data-embed="https://player.bilibili.com/player.html?isOutside=true&bvid=BV14GSZBPEBV&p=1" class="js-poster relative w-full h-full text-left" style="background-image:url('./poster2.png');background-size:cover;background-position:center;">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.08),transparent_24%)]"></div>
-            <div class="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.78),rgba(0,0,0,0.12),rgba(0,0,0,0.46))]"></div>
-            <div class="absolute inset-0 shadow-[inset_0_-80px_120px_rgba(0,0,0,0.55)]"></div>
-            <div class="absolute inset-0 opacity-20 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:32px_32px]"></div>
-            <div class="absolute left-5 top-5 text-[10px] uppercase tracking-[0.32em] text-white/70">Official Poster Frame</div>
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="flex h-24 w-24 items-center justify-center rounded-full border border-white/15 bg-black/40 backdrop-blur-md shadow-[0_20px_60px_rgba(0,0,0,0.45)] transition duration-300 group-hover:scale-105 group-hover:bg-black/50">
-                <div class="play-triangle"></div>
-              </div>
-            </div>
-            <div class="absolute inset-x-0 bottom-2 md:bottom-4 p-5 md:p-6">
-              <div class="flex items-center justify-between gap-4">
-                <div>
-                  <div class="text-[11px] uppercase tracking-[0.28em] text-white/55">Poster / Click to Play</div>
-                  <div class="mt-2 text-base md:text-lg tracking-[0.18em] text-white/68 uppercase">Official Showcase</div>
-                  <div class="mt-3 text-[clamp(30px,4.6vw,64px)] serif leading-[0.88] tracking-tight text-white/95 drop-shadow-[0_8px_30px_rgba(0,0,0,0.55)]">诡秘之猫</div>
-                </div>
-                <div class="rounded-full border border-white/20 bg-black/30 px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-white/75 backdrop-blur-sm">Cinematic Cover</div>
-              </div>
-            </div>
-          </button>
-        </div>
-        <div class="relative mt-6 text-xs text-white/40 uppercase tracking-[0.3em]">悬疑设定 / 氛围叙事</div>
-        <div class="relative mt-2 text-2xl md:text-3xl serif">《诡秘之猫》</div>
-        <div class="relative mt-4 rounded-2xl border border-white/10 bg-black/20 p-4 backdrop-blur-sm">
-          <div class="text-[11px] uppercase tracking-[0.28em] text-white/38">Hook</div>
-          <div class="mt-2 text-white/80 leading-7">一只猫，带出一场不能回头的诡秘局。</div>
-        </div>
-        <div class="relative mt-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-sm">
-          <div class="text-[11px] uppercase tracking-[0.28em] text-white/38">Case Value</div>
-          <div class="mt-2 text-white/66 leading-7">高概念钩子｜连续追更结构｜AI氛围强化</div>
-        </div>
-      </div>
-
-      <div class="group relative border border-white/10 p-5 md:p-6 bg-white/[0.03] backdrop-blur overflow-hidden transition duration-300 hover:-translate-y-1 hover:bg-white/[0.05] hover:border-white/20 hover:shadow-[0_18px_60px_rgba(0,0,0,0.35)]">
-        <div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
-        <div class="relative aspect-[16/10] rounded-[22px] overflow-hidden border border-white/10 bg-black js-video-shell">
-          <button type="button" data-embed="https://player.bilibili.com/player.html?isOutside=true&bvid=BV1yJSZBbEFi&p=1" class="js-poster relative w-full h-full text-left" style="background-image:url('./poster3.png');background-size:cover;background-position:center;">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.08),transparent_24%)]"></div>
-            <div class="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.78),rgba(0,0,0,0.12),rgba(0,0,0,0.46))]"></div>
-            <div class="absolute inset-0 shadow-[inset_0_-80px_120px_rgba(0,0,0,0.55)]"></div>
-            <div class="absolute inset-0 opacity-20 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:32px_32px]"></div>
-            <div class="absolute left-5 top-5 text-[10px] uppercase tracking-[0.32em] text-white/70">Official Poster Frame</div>
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="flex h-24 w-24 items-center justify-center rounded-full border border-white/15 bg-black/40 backdrop-blur-md shadow-[0_20px_60px_rgba(0,0,0,0.45)] transition duration-300 group-hover:scale-105 group-hover:bg-black/50">
-                <div class="play-triangle"></div>
-              </div>
-            </div>
-            <div class="absolute inset-x-0 bottom-2 md:bottom-4 p-5 md:p-6">
-              <div class="flex items-center justify-between gap-4">
-                <div>
-                  <div class="text-[11px] uppercase tracking-[0.28em] text-white/55">Poster / Click to Play</div>
-                  <div class="mt-2 text-base md:text-lg tracking-[0.18em] text-white/68 uppercase">Official Showcase</div>
-                  <div class="mt-3 text-[clamp(30px,4.6vw,64px)] serif leading-[0.88] tracking-tight text-white/95 drop-shadow-[0_8px_30px_rgba(0,0,0,0.55)]">北纬30°</div>
-                </div>
-                <div class="rounded-full border border-white/20 bg-black/30 px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-white/75 backdrop-blur-sm">Cinematic Cover</div>
-              </div>
-            </div>
-          </button>
-        </div>
-        <div class="relative mt-6 text-xs text-white/40 uppercase tracking-[0.3em]">都市奇幻 / 世界观</div>
-        <div class="relative mt-2 text-2xl md:text-3xl serif">《北纬30°的诅咒》</div>
-        <div class="relative mt-4 rounded-2xl border border-white/10 bg-black/20 p-4 backdrop-blur-sm">
-          <div class="text-[11px] uppercase tracking-[0.28em] text-white/38">Hook</div>
-          <div class="mt-2 text-white/80 leading-7">当禁忌坐标被打开，真相开始反噬现实。</div>
-        </div>
-        <div class="relative mt-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-sm">
-          <div class="text-[11px] uppercase tracking-[0.28em] text-white/38">Case Value</div>
-          <div class="mt-2 text-white/66 leading-7">复杂设定可视化｜AI镜头友好结构｜探索类内容延展</div>
-        </div>
-      </div>
-
-      <div class="group relative border border-white/10 p-5 md:p-6 bg-white/[0.03] backdrop-blur overflow-hidden transition duration-300 hover:-translate-y-1 hover:bg-white/[0.05] hover:border-white/20 hover:shadow-[0_18px_60px_rgba(0,0,0,0.35)]">
-        <div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
-        <div class="relative aspect-[16/10] rounded-[22px] overflow-hidden border border-white/10 bg-black js-video-shell">
-          <button type="button" data-embed="https://player.bilibili.com/player.html?isOutside=true&bvid=BV1pnSZBZECU&p=1" class="js-poster relative w-full h-full text-left" style="background-image:url('./poster4.png');background-size:cover;background-position:center;">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.08),transparent_24%)]"></div>
-            <div class="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.78),rgba(0,0,0,0.12),rgba(0,0,0,0.46))]"></div>
-            <div class="absolute inset-0 shadow-[inset_0_-80px_120px_rgba(0,0,0,0.55)]"></div>
-            <div class="absolute inset-0 opacity-20 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:32px_32px]"></div>
-            <div class="absolute left-5 top-5 text-[10px] uppercase tracking-[0.32em] text-white/70">Official Poster Frame</div>
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="flex h-24 w-24 items-center justify-center rounded-full border border-white/15 bg-black/40 backdrop-blur-md shadow-[0_20px_60px_rgba(0,0,0,0.45)] transition duration-300 group-hover:scale-105 group-hover:bg-black/50">
-                <div class="play-triangle"></div>
-              </div>
-            </div>
-            <div class="absolute inset-x-0 bottom-2 md:bottom-4 p-5 md:p-6">
-              <div class="flex items-center justify-between gap-4">
-                <div>
-                  <div class="text-[11px] uppercase tracking-[0.28em] text-white/55">Poster / Click to Play</div>
-                  <div class="mt-2 text-base md:text-lg tracking-[0.18em] text-white/68 uppercase">Official Showcase</div>
-                  <div class="mt-3 text-[clamp(30px,4.6vw,64px)] serif leading-[0.88] tracking-tight text-white/95 drop-shadow-[0_8px_30px_rgba(0,0,0,0.55)]">再见，明</div>
-                </div>
-                <div class="rounded-full border border-white/20 bg-black/30 px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-white/75 backdrop-blur-sm">Cinematic Cover</div>
-              </div>
-            </div>
-          </button>
-        </div>
-        <div class="relative mt-6 text-xs text-white/40 uppercase tracking-[0.3em]">情感叙事 / 人物关系</div>
-        <div class="relative mt-2 text-2xl md:text-3xl serif">《再见，明》</div>
-        <div class="relative mt-4 rounded-2xl border border-white/10 bg-black/20 p-4 backdrop-blur-sm">
-          <div class="text-[11px] uppercase tracking-[0.28em] text-white/38">Hook</div>
-          <div class="mt-2 text-white/80 leading-7">告别不是结束，而是另一种迟来的回答。</div>
-        </div>
-        <div class="relative mt-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-sm">
-          <div class="text-[11px] uppercase tracking-[0.28em] text-white/38">Case Value</div>
-          <div class="mt-2 text-white/66 leading-7">情绪留存设计｜人物弧线压缩｜短剧共鸣结构</div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="mt-8 rounded-[24px] border border-dashed border-white/15 bg-white/[0.02] p-5 text-sm leading-7 text-white/58">
-      当前版本已升级为电影海报级封面展示：默认先看海报质感、再点击播放，更像影视项目官网，也更适合甲方快速建立对作品气质的判断。若后续你提供本地 mp4 文件，还可以继续升级成更高级的封面视频系统。
-    </div>
-  </section>
-
-  <section id="contact" class="px-6 md:px-10 lg:px-16 pb-32">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-      <div>
-        <h3 class="text-4xl md:text-5xl serif leading-tight">
-          让内容
-          <br />
-          从创意直接进入成交
-        </h3>
-
-        <p class="mt-6 text-white/70 leading-8">
-          从剧本到 AI 成片，我提供完整内容结构，让项目一开始就具备传播能力。
-        </p>
-
-        <div class="mt-8 text-white/60 leading-7">
-          合作方向：AI 短视频创作 / 短剧项目 / 内容提案 / 漫剧内容开发
-        </div>
-      </div>
-
-      <div id="contact" class="relative border border-white/10 p-8 text-center bg-white/[0.03]">
-        <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.1),transparent_60%)] opacity-30"></div>
-        <img src="./qr.png" alt="二维码" class="w-32 h-32 mx-auto mb-4 relative" />
-        <div class="relative text-white/80">扫码合作</div>
-        <div class="relative text-white/50 text-sm mt-2">立即沟通项目</div>
-
-        <button class="relative mt-6 border border-white px-6 py-3 hover:bg-white hover:text-black transition">
-          发起合作
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    document.querySelectorAll('.js-poster').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        var shell = btn.closest('.js-video-shell');
-        var embed = btn.getAttribute('data-embed');
-        shell.innerHTML = '<iframe src="' + embed + '" title="video" class="w-full h-full" frameborder="0" allow="fullscreen" allowfullscreen></iframe>';
-      });
-    });
-  </script>
 </body>
 </html>
