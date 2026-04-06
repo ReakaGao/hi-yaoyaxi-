@@ -1,17 +1,16 @@
-# 垚（yao）芽熹｜完整版上线版
+# 纯HTML最终成交版
 
-## 你要上传到 GitHub 的文件
-- index.html
-- qr.png
+文件说明：
+- index.html：主页
+- poster1.png ~ poster4.png：4张作品封面
+- qr.png：联系二维码
 
-## 最傻瓜部署
-1. 打开 GitHub 仓库
-2. Add file -> Upload files
-3. 把整个文件夹里的 `index.html` 和 `qr.png` 一起拖进去
-4. Commit changes
-5. 打开 Vercel，用 GitHub 登录
-6. New Project -> 选择这个仓库 -> Deploy
+使用方法：
+1. 保持这些文件在同一个文件夹
+2. 双击 index.html 可直接本地打开预览
+3. 上传到 GitHub / Vercel 时，也是一整套一起上传
 
-## 后期修改
-- 改文案：直接编辑 `index.html`
-- 换二维码：把 `qr.png` 替换成新图，文件名保持不变
+后期修改：
+- 改文案：编辑 index.html
+- 换封面：替换 poster1~4.png，文件名不变
+- 换二维码：替换 qr.png，文件名不变
